@@ -6,4 +6,4 @@ RUN pip3 install poetry
 RUN poetry config virtualenvs.create false
 RUN poetry install
 COPY . .
-CMD gunicorn test_alente.wsgi:application --bind 0.0.0.0:8000
+CMD gunicorn config.wsgi:application --bind 0.0.0.0:8000
