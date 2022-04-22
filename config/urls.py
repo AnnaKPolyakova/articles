@@ -5,27 +5,32 @@ from django.urls import include, path
 from drf_spectacular.views import (SpectacularAPIView, SpectacularRedocView,
                                    SpectacularSwaggerView)
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("api/", include("article.urls")),
+apps_patterns = [
+    path("", include("article.urls")),
 ]
 
-urlpatterns += [
-    # YOUR PATTERNS
-    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
-    # Optional UI:
+api_schema_patterns = [
+    path("", SpectacularAPIView.as_view(), name="schema"),
     path(
-        "api/schema/swagger-ui/",
+        "swagger-ui/",
         SpectacularSwaggerView.as_view(url_name="schema"),
         name="swagger-ui",
     ),
     path(
-        "api/schema/redoc/",
+        "redoc/",
         SpectacularRedocView.as_view(url_name="schema"),
         name="redoc",
     ),
 ]
 
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("api/", include(apps_patterns)),
+    path(
+        "api/v1/schema/",
+        include(api_schema_patterns),
+    ),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

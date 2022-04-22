@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "Alente"
+name = "articles"
 version = "0.1.0"
-description = "Alente"
+description = "articles"
 authors = ["AnnaKPolyakova"]
 
 [tool.poetry.dependencies]
@@ -14,8 +14,8 @@ pytest-django = "^4.5.2"
 isort = "^5.10.1"
 black = "^21.12b0"
 gunicorn = "^20.1.0"
-psycopg2-binary = "^2.9.3"
 django-environ = "0.7.0"
 pytest-lazy-fixture = "^0.6.3"
 pytest-cov = "^3.0.0"
 django-filter = "^21.1"
+psycopg2-binary = "^2.9.3"

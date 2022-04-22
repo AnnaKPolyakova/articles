@@ -25,12 +25,12 @@ DJANGO_SECRET_KEY=
 
 3) Разворачиваем и запускаем проект:
 - docker compose up
-- docker-compose exec web python manage.py migrate --noinput   # применяем миграции
-- docker-compose exec web python manage.py createsuperuser     # создаем суперпользователя
+- docker-compose exec web python manage.py migrate  # применяем миграции
+- docker-compose exec web python manage.py createsuperuser   # создаем суперпользователя
 - docker-compose exec web python manage.py collectstatic --no-input     # собираем статику
 ```
 
 Автодокументация
 ```
-http://127.0.0.1/api/schema/swagger-ui/
+http://127.0.0.1/api/v1/schema/swagger-ui/
 ```
