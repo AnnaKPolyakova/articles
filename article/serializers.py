@@ -1,13 +1,12 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from article.models import Article, Comment, COMMENT_ERROR_TEXT
+from article.models import COMMENT_ERROR_TEXT, Article, Comment
 
 User = get_user_model()
 
 
 class ArticleCreateSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Article
         fields = "__all__"
@@ -35,21 +34,13 @@ class CommentBaseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = [
-            "id",
-            "author",
-            "article",
-            "level",
-            "text",
-            "comments"
-        ]
+        fields = ["id", "author", "article", "level", "text", "comments"]
 
     def get_comments(self, obj):
         pass
 
 
 class CommentForArticleSerializer(CommentBaseSerializer):
-
     def get_comments(self, obj):
         if obj.level == 3:
             return None
@@ -58,7 +49,6 @@ class CommentForArticleSerializer(CommentBaseSerializer):
 
 
 class CommentCreateSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Comment
         fields = "__all__"
@@ -71,7 +61,6 @@ class CommentCreateSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(CommentBaseSerializer):
-
     def get_comments(self, obj):
         comments = obj.comments.all()
         return CommentSerializer(comments, many=True).data

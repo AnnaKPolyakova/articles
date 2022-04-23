@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
-from django.db import models
 from django.core.exceptions import ValidationError
+from django.db import models
 
 User = get_user_model()
 
@@ -24,9 +24,7 @@ class Article(models.Model):
         verbose_name="Автор",
     )
 
-    text = models.TextField(
-        verbose_name="Текст"
-    )
+    text = models.TextField(verbose_name="Текст")
 
     pub_date = models.DateTimeField(
         auto_now=True,
@@ -46,7 +44,7 @@ class Comment(models.Model):
         Article,
         on_delete=models.CASCADE,
         related_name="comments",
-        verbose_name="Статья"
+        verbose_name="Статья",
     )
     author = models.ForeignKey(
         User,
@@ -60,14 +58,11 @@ class Comment(models.Model):
         null=True,
         on_delete=models.CASCADE,
         related_name="comments",
-        verbose_name="комментарий"
+        verbose_name="комментарий",
     )
-    level = models.PositiveIntegerField(
-        default=1
-    )
+    level = models.PositiveIntegerField(default=1)
     pub_date = models.DateTimeField(
-        auto_now=True,
-        verbose_name="Дату публикации комментария"
+        auto_now=True, verbose_name="Дату публикации комментария"
     )
     text = models.TextField(
         verbose_name="Текст отзыва",

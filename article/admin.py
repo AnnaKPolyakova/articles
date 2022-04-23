@@ -28,9 +28,4 @@ class CommentAdmin(admin.ModelAdmin):
         "level",
         "text",
     )
-    list_filter = (
-        "article",
-        "author",
-        "comment"
-    )
-
+    list_filter = ("article", "author", "comment")
